@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Рецепт</title>
+    <link rel="stylesheet" href="static/css/styles.css">
+</head>
+<body>
+<header class="header">
+    <div class="container">
+        <h1 class="header_title">Кулинарные рецепты</h1>
+        <nav class="header_nav">
+            <a href="index.html" class="header_link">Главная</a>
+            <a href="login.html" class="header_link">Войти</a>
+            <a href="register.html" class="header_link">Регистрация</a>
+        </nav>
+    </div>
+</header>
+
+<main class="recipe-page">
+    <div class="container">
+        <h2 class="recipe-page_title">{{  name  }}</h2>
+        <img src="static/images/{{  img_name  }}" alt="{{  name  }}" class="recipe-page_image">
+        <p class="recipe-page_description">{{  desc  }}</p>
+        <h3 class="recipe-page_subtitle">Ингредиенты:</h3>
+        <ul class="recipe-page_ingredients">
+            {% for ing, amount in ingredients.items %}
+            <li>{{  ing  }} - {{  amount  }}</li>
+            {% empty %}
+            <li>Список ингредиентов пустой</li>
+            {% endfor %}
+        </ul>
+        <h3 class="recipe-page_subtitle">Инструкции:</h3>
+        <ol class="recipe-page_instructions">
+            <li>Отварите говядину до готовности.</li>
+            <li>Нарежьте овощи и обжарьте их на сковороде.</li>
+            <li>Добавьте овощи в бульон и варите 30 минут.</li>
+            <li>Подавайте горячим со сметаной.</li>
+        </ol>
+    </div>
+</main>
+
+<footer class="footer">
+    <div class="container">
+        <p class="footer_text">© 2025 Название сайта. Все права не защищены.</p>
+    </div>
+</footer>
+</body>
+</html>
