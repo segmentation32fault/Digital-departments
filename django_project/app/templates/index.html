@@ -1,0 +1,96 @@
+<!--
+        Страница с популярными рецептами
+-->
+<!DOCTYPE html>
+{%  load static  %}
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Главная страница - Рецепты</title>
+    <link rel="stylesheet" href="static/css/styles.css">
+</head>
+<body>
+<header class="header">
+    <div class="container">
+        <h1 class="header_title">Название</h1>
+        <nav class="header_nav">
+            <a href="index.html" class="header_link">Главная</a>
+            <a href="login.html" class="header_link">Войти</a>
+            <a href="register.html" class="header_link">Регистрация</a>
+        </nav>
+        <!-- Поиск -->
+    </div>
+</header>
+
+<main class="content">
+    <h2 class="recipes_title">Популярные рецепты</h2>
+    <div class="container content_wrapper">
+        <!-- Sidebar -->
+        <section class="sidebar">
+            <h2 class="sidebar__title">Фильтры</h2>
+            <form class="sidebar__filters">
+                <label class="sidebar__filter">
+                    Категория:
+                    <select class="sidebar__select">
+                        <option value="all">Все</option>
+                        <option value="soup">Супы</option>
+                        <option value="salad">Салаты</option>
+                        <option value="dessert">Десерты</option>
+                    </select>
+                </label>
+
+                <label class="sidebar__filter">
+                    Время приготовления:
+                    <input type="range" class="sidebar__range" min="10" max="120" value="30">
+                    <span class="sidebar__range-value">30 минут</span>
+                </label>
+
+                <label class="sidebar__filter">
+                    Сложность:
+                    <div class="sidebar__difficulty">
+                        <input type="radio" id="easy" name="difficulty" value="easy" class="sidebar__radio">
+                        <label for="easy" class="sidebar__radio-label">Легко</label>
+                        <input type="radio" id="medium" name="difficulty" value="medium" class="sidebar__radio">
+                        <label for="medium" class="sidebar__radio-label">Средне</label>
+                        <input type="radio" id="hard" name="difficulty" value="hard" class="sidebar__radio">
+                        <label for="hard" class="sidebar__radio-label">Сложно</label>
+                    </div>
+                </label>
+            </form>
+        </section>
+
+        <!-- Main Content -->
+        <section class="recipes">
+            <div class="recipes_list">
+                <!--
+                        Временно копипаста, потом будет бесконечный скролл
+                 -->
+                <!--
+                <div class="recipe-card">
+                    <img src="images/XXXL.webp" alt="Фото" class="recipe-card_image">
+                    <h3 class="recipe-card_title">Название</h3>
+                    <p class="recipe-card_description">Описание</p>
+                    <a href="recipe.html" class="recipe-card_button">Подробнее</a>
+                </div>
+                -->
+                <div class="recipe-card">
+                    <img src="" alt="Фото" class="recipe-card_image">
+                    <h3 class="recipe-card_title"></h3>
+                    <p class="recipe-card_description"></p>
+                    <a href="recipe.html" class="recipe-card_button"></a>
+                </div>
+            </div>
+        </section>
+
+    </div>
+<!--    <script src="infscroll.js"></script> -->
+</main>
+
+<footer class="footer">
+    <div class="container">
+        <p class="footer_text">© 2025 Название сайта. Все права не защищены.</p>
+    </div>
+</footer>
+</body>
+</html>
