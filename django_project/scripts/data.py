@@ -19,5 +19,14 @@ def find_recipe(num):
     return res
 
 
+def get_popular_recipes(count):
+    base_dir = settings.BASE_DIR
+    table = pd.read_csv(os.path.join(base_dir, 'data\\recipes.csv'))
+    res = table.sort_values(by=['Просмотры'], ascending=False)
+    res = res.head(count)
+    res = res.to_dict(orient='records')
+    return res
+
+
 if __name__ == '__main__':
-    print(find_recipe(2))
+    print(get_popular_recipes(3))

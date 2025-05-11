@@ -15,9 +15,9 @@
     <div class="container">
         <h1 class="header_title">Название</h1>
         <nav class="header_nav">
-            <a href="index.html" class="header_link">Главная</a>
-            <a href="login.html" class="header_link">Войти</a>
-            <a href="register.html" class="header_link">Регистрация</a>
+            <a href="/popular" class="header_link">Главная</a>
+            <a href="/login" class="header_link">Войти</a>
+            <a href="/register" class="header_link">Регистрация</a>
         </nav>
         <!-- Поиск -->
     </div>
@@ -63,28 +63,18 @@
         <!-- Main Content -->
         <section class="recipes">
             <div class="recipes_list">
-                <!--
-                        Временно копипаста, потом будет бесконечный скролл
-                 -->
-                <!--
-                <div class="recipe-card">
-                    <img src="images/XXXL.webp" alt="Фото" class="recipe-card_image">
-                    <h3 class="recipe-card_title">Название</h3>
-                    <p class="recipe-card_description">Описание</p>
-                    <a href="recipe.html" class="recipe-card_button">Подробнее</a>
+                {% for rec in recipes %}
+                <div class="recipe-card" onclick="redirect('/recipe/{{ rec.ID }}')">
+                    <img src="{% static 'images/' %}{{ rec.Фото }}" alt="Фото" class="recipe-card_image">
+                    <h3 class="recipe-card_title">{{ rec.Название }}</h3>
+                    <p class="recipe-card_description">{{ rec.Описание }}</p>
                 </div>
-                -->
-                <div class="recipe-card">
-                    <img src="" alt="Фото" class="recipe-card_image">
-                    <h3 class="recipe-card_title"></h3>
-                    <p class="recipe-card_description"></p>
-                    <a href="recipe.html" class="recipe-card_button"></a>
-                </div>
+                {% endfor %}
             </div>
         </section>
 
     </div>
-<!--    <script src="infscroll.js"></script> -->
+<script src="{% static 'js/script.js' %}"></script>
 </main>
 
 <footer class="footer">

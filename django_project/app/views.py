@@ -3,13 +3,14 @@ from django.http import HttpResponse, HttpResponseNotFound, HttpRequest, Http404
 from django.http import HttpResponseRedirect, HttpResponsePermanentRedirect
 from django.conf import settings
 import os
+from scripts.data import find_recipe, get_popular_recipes
 
 from rest_framework import viewsets, generics
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .models import Post, Tag, User
 from .serializers import PostSerializer, TagSerializer, UserSerializer, RegistrationSerializer
-from scripts.data import find_recipe
+
 
 # Create your views here.
 
@@ -31,7 +32,8 @@ def register(request: HttpRequest):
 
 
 def popular_recipes(request: HttpRequest):
-    return render(request, 'app/index.html')
+    recipes = get_popular_recipes(9)
+    return render(request, 'app/index.html', context={'recipes': recipes})
 
 
 def recipe(request: HttpRequest, num=1):
