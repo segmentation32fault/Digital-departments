@@ -8,9 +8,8 @@ urlpatterns = [
 
     path('popular/', views.popular_recipes),
     re_path(r'^recipe/(?P<num>\d+)', views.recipe),
-    re_path(r'^recipe', views.recipe),
 
     path('analytics/', views.analytics),
-    path('home/', views.index),
+    path('home/', views.index, name='home'),
     path('', views.index),
 ]

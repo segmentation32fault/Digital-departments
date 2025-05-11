@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Рецепт</title>
-    <link rel="stylesheet" href="static/css/styles.css">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
 <header class="header">
@@ -22,12 +22,12 @@
 <main class="recipe-page">
     <div class="container">
         <h2 class="recipe-page_title">{{  name  }}</h2>
-        <img src="static/images/{{  img_name  }}" alt="{{  name  }}" class="recipe-page_image">
+        <img src="{% static 'images/'%}{{ img_name }}" alt="{{ name }}" class="recipe-page_image">
         <p class="recipe-page_description">{{  desc  }}</p>
         <h3 class="recipe-page_subtitle">Ингредиенты:</h3>
         <ul class="recipe-page_ingredients">
             {% for ing, amount in ingredients.items %}
-            <li>{{  ing  }} - {{  amount  }}</li>
+            <li>{{ ing }} - {{ amount }}</li>
             {% empty %}
             <li>Список ингредиентов пустой</li>
             {% endfor %}
