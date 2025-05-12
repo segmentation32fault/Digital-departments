@@ -1,45 +1,23 @@
-<!-- login.html -->
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Войти</title>
-    <link rel="stylesheet" href="../../static/css/styles.css">
-</head>
-<body>
-<header class="header">
-    <div class="container">
-        <h1 class="header_title">Регистрация</h1>
-    </div>
-</header>
-
+<!--
+        Вход в аккаунт
+-->
+{% extends 'base.html' %}
+{% block content %}
 <main class="auth">
     <div class="container">
         <form class="auth_form">
-            <h2 class="auth_title">Создайте аккаунт</h2>
+            <h2 class="auth_title">Войдите в аккаунт</h2>
             <label class="auth_label">
                 Имя пользователя:
                 <input type="text" class="auth_input" required>
             </label>
             <label class="auth_label">
-                Email:
-                <input type="email" class="auth_input" required>
-            </label>
-            <label class="auth_label">
                 Пароль:
                 <input type="password" class="auth_input" required>
             </label>
-            <button type="submit" class="auth_button">Зарегистрироваться</button>
-            <p class="auth_text">Уже есть аккаунт? <a href="login.html" class="auth_link">Войдите здесь</a>.</p>
+            <button type="submit" class="auth_button">Войти</button>
+
         </form>
     </div>
 </main>
-
-<footer class="footer">
-    <div class="container">
-        <p class="footer_text">© 2025 Название сайта. Все права не защищены.</p>
-    </div>
-</footer>
-</body>
-</html>
+{% endblock %}

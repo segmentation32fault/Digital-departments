@@ -1,28 +1,9 @@
 <!--
         Страница с популярными рецептами
 -->
-<!DOCTYPE html>
-{%  load static  %}
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Главная страница - Рецепты</title>
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-</head>
-<body>
-<header class="header">
-    <div class="container">
-        <h1 class="header_title">Название</h1>
-        <nav class="header_nav">
-            <a href="/popular" class="header_link">Главная</a>
-            <a href="/login" class="header_link">Войти</a>
-            <a href="/register" class="header_link">Регистрация</a>
-        </nav>
-        <!-- Поиск -->
-    </div>
-</header>
-
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
 <main class="content">
     <h2 class="recipes_title">Популярные рецепты</h2>
     <div class="container content_wrapper">
@@ -64,7 +45,7 @@
         <section class="recipes">
             <div class="recipes_list">
                 {% for rec in recipes %}
-                <div class="recipe-card" onclick="redirect('/recipe/{{ rec.ID }}')">
+                <div class="recipe-card" onclick="redirect('{% url 'recipe' rec.ID %}')">
                     <img src="{% static 'images/' %}{{ rec.Фото }}" alt="Фото" class="recipe-card_image">
                     <h3 class="recipe-card_title">{{ rec.Название }}</h3>
                     <p class="recipe-card_description">{{ rec.Описание }}</p>
@@ -76,11 +57,4 @@
     </div>
 <script src="{% static 'js/script.js' %}"></script>
 </main>
-
-<footer class="footer">
-    <div class="container">
-        <p class="footer_text">© 2025 Название сайта. Все права не защищены.</p>
-    </div>
-</footer>
-</body>
-</html>
+{% endblock %}

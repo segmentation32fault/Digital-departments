@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Рецепт</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+<header class="header">
+    <div class="container">
+        <h1 class="header_title">Кулинарные рецепты</h1>
+        <nav class="header_nav">
+            {% for menu_item in menu %}
+            <a href="{% url menu_item.url %}" class="header_link">{{ menu_item.title }}</a>
+            {% endfor %}
+        </nav>
+    </div>
+</header>
+
+{% block content %} {% endblock %}
+
+<footer class="footer">
+    <div class="container">
+        <p class="footer_text">© 2025 Название сайта. Все права не защищены.</p>
+    </div>
+</footer>
+</body>
+</html>

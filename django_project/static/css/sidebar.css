@@ -1,0 +1,67 @@
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar_title {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.sidebar_filters {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.sidebar_filter {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.sidebar_select {
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.sidebar_range {
+    width: 100%;
+}
+
+.sidebar_range-value {
+    display: block;
+    margin-top: 0.5rem;
+    color: #666;
+}
+
+.sidebar_difficulty {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.sidebar_radio {
+    display: none;
+}
+
+.sidebar_radio-label {
+    padding: 0.5rem;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.sidebar_radio:checked + .sidebar__radio-label {
+    background: #ff6f61;
+    color: white;
+}

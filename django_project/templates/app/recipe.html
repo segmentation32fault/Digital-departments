@@ -1,24 +1,9 @@
-<!DOCTYPE html>
+<!--
+        Страница рецепта
+-->
+{% extends 'base.html' %}
 {% load static %}
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Рецепт</title>
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-</head>
-<body>
-<header class="header">
-    <div class="container">
-        <h1 class="header_title">Кулинарные рецепты</h1>
-        <nav class="header_nav">
-            <a href="/popular" class="header_link">Главная</a>
-            <a href="/login" class="header_link">Войти</a>
-            <a href="/register" class="header_link">Регистрация</a>
-        </nav>
-    </div>
-</header>
-
+{% block content %}
 <main class="recipe-page">
     <div class="container">
         <h2 class="recipe-page_title">{{  name  }}</h2>
@@ -41,11 +26,4 @@
         </ol>
     </div>
 </main>
-
-<footer class="footer">
-    <div class="container">
-        <p class="footer_text">© 2025 Название сайта. Все права не защищены.</p>
-    </div>
-</footer>
-</body>
-</html>
+{% endblock %}
