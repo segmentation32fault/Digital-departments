@@ -1,25 +1,8 @@
-<!-- login.html -->
-<!DOCTYPE html>
-{% load static %}
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Войти</title>
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-</head>
-<body>
-<header class="header">
-    <div class="container">
-        <h1 class="header_title">Кулинарные рецепты</h1>
-        <nav class="header_nav">
-            <a href="{% url 'popular_recipes' %}" class="header_link">Главная</a>
-            <a href="{% url 'login' %}" class="header_link">Войти</a>
-            <a href="{% url 'register' %}" class="header_link">Регистрация</a>
-        </nav>
-    </div>
-</header>
-
+<!--
+        Вход в аккаунт
+-->
+{% extends 'base.html' %}
+{% block content %}
 <main class="auth">
     <div class="container">
         <form class="auth_form">
@@ -37,11 +20,4 @@
         </form>
     </div>
 </main>
-
-<footer class="footer">
-    <div class="container">
-        <p class="footer_text">© 2025 Название сайта. Все права не защищены.</p>
-    </div>
-</footer>
-</body>
-</html>
+{% endblock %}

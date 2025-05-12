@@ -1,32 +1,9 @@
 <!--
         Страница с популярными рецептами
 -->
-<!DOCTYPE html>
-{%  load static  %}
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Главная страница - Рецепты</title>
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-<!--    <link rel="stylesheet" href="{% static 'css/main.css' %}">-->
-<!--    <link rel="stylesheet" href="{% static 'css/popular.css' %}">-->
-<!--    <link rel="stylesheet" href="{% static 'css/sidebar.css' %}">-->
-<!--    <link rel="stylesheet" href="{% static 'css/card.css' %}">-->
-</head>
-<body>
-<header class="header">
-    <div class="container">
-        <h1 class="header_title">Кулинарные рецепты</h1>
-        <nav class="header_nav">
-            <a href="{% url 'popular_recipes' %}" class="header_link">Главная</a>
-            <a href="{% url 'login' %}" class="header_link">Войти</a>
-            <a href="{% url 'register' %}" class="header_link">Регистрация</a>
-        </nav>
-        <!-- Поиск -->
-    </div>
-</header>
-
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
 <main class="content">
     <h2 class="recipes_title">Популярные рецепты</h2>
     <div class="container content_wrapper">
@@ -80,11 +57,4 @@
     </div>
 <script src="{% static 'js/script.js' %}"></script>
 </main>
-
-<footer class="footer">
-    <div class="container">
-        <p class="footer_text">© 2025 Название сайта. Все права не защищены.</p>
-    </div>
-</footer>
-</body>
-</html>
+{% endblock %}
