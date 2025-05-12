@@ -3,7 +3,7 @@ from django.http import HttpResponse, HttpResponseNotFound, HttpRequest, Http404
 from django.http import HttpResponseRedirect, HttpResponsePermanentRedirect
 from django.conf import settings
 import os
-from scripts.data import find_recipe, get_popular_recipes
+from scripts.data import find_recipe, get_popular_recipes, get_liked_recipes
 
 from rest_framework import viewsets, generics
 from rest_framework.decorators import api_view
@@ -16,7 +16,7 @@ from .serializers import PostSerializer, TagSerializer, UserSerializer, Registra
 
 
 def index(request: HttpRequest):
-    return HttpResponse('<h1>Главная страница</h1>')
+    return redirect('popular_recipes')
 
 
 def profile(request: HttpRequest):
@@ -41,7 +41,7 @@ def recipe(request: HttpRequest, num=1):
 
     if recipe_info is None:
         #   если рецепт не нашелся, то перенаправление на гл страницу или страницу ошибки
-        return redirect('home')
+        return redirect('popular_recipes')
 
     return render(request, 'app/recipe.html', context=recipe_info)
 
@@ -51,5 +51,9 @@ def analytics(request: HttpRequest):
     return HttpResponse(f'<h1>Временная аналитика</h1>\n<p>Host: {host}</p>')
 
 
+def liked_recipes(request: HttpRequest, username):
+    context = {'liked_recipes': get_liked_recipes(username=username)}
+    return render(request, 'app/liked.html', context=context)
+
 def page_not_found(request: HttpRequest, exception):
-    return HttpResponseNotFound('<h1>Страница не найдена :(</h1>')
+    return render(request, 'app/404.html', status=404)

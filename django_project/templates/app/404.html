@@ -1,11 +1,9 @@
-<!-- login.html -->
 <!DOCTYPE html>
 {% load static %}
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Войти</title>
+    <title>Страница не найдена</title>
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
@@ -17,24 +15,16 @@
             <a href="{% url 'login' %}" class="header_link">Войти</a>
             <a href="{% url 'register' %}" class="header_link">Регистрация</a>
         </nav>
+        <!-- Поиск -->
     </div>
 </header>
 
-<main class="auth">
-    <div class="container">
-        <form class="auth_form">
-            <h2 class="auth_title">Войдите в аккаунт</h2>
-            <label class="auth_label">
-                Имя пользователя:
-                <input type="text" class="auth_input" required>
-            </label>
-            <label class="auth_label">
-                Пароль:
-                <input type="password" class="auth_input" required>
-            </label>
-            <button type="submit" class="auth_button">Войти</button>
-
-        </form>
+<main class="content">
+    <div class="container content_wrapper">
+        <section class="recipes">
+            <h2>Страница не найдена</h2>
+            <p>Проверьте URL-адрес на наличие ошибок</p>
+        </section>
     </div>
 </main>
 
@@ -43,5 +33,6 @@
         <p class="footer_text">© 2025 Название сайта. Все права не защищены.</p>
     </div>
 </footer>
+
 </body>
 </html>

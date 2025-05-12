@@ -9,15 +9,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Главная страница - Рецепты</title>
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+<!--    <link rel="stylesheet" href="{% static 'css/main.css' %}">-->
+<!--    <link rel="stylesheet" href="{% static 'css/popular.css' %}">-->
+<!--    <link rel="stylesheet" href="{% static 'css/sidebar.css' %}">-->
+<!--    <link rel="stylesheet" href="{% static 'css/card.css' %}">-->
 </head>
 <body>
 <header class="header">
     <div class="container">
-        <h1 class="header_title">Название</h1>
+        <h1 class="header_title">Кулинарные рецепты</h1>
         <nav class="header_nav">
-            <a href="/popular" class="header_link">Главная</a>
-            <a href="/login" class="header_link">Войти</a>
-            <a href="/register" class="header_link">Регистрация</a>
+            <a href="{% url 'popular_recipes' %}" class="header_link">Главная</a>
+            <a href="{% url 'login' %}" class="header_link">Войти</a>
+            <a href="{% url 'register' %}" class="header_link">Регистрация</a>
         </nav>
         <!-- Поиск -->
     </div>
@@ -64,7 +68,7 @@
         <section class="recipes">
             <div class="recipes_list">
                 {% for rec in recipes %}
-                <div class="recipe-card" onclick="redirect('/recipe/{{ rec.ID }}')">
+                <div class="recipe-card" onclick="redirect('{% url 'recipe' rec.ID %}')">
                     <img src="{% static 'images/' %}{{ rec.Фото }}" alt="Фото" class="recipe-card_image">
                     <h3 class="recipe-card_title">{{ rec.Название }}</h3>
                     <p class="recipe-card_description">{{ rec.Описание }}</p>
