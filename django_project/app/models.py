@@ -3,18 +3,32 @@ from django.db import models
 # Create your models here.
 
 
-class User(models.Model):
-    display_name = models.CharField(max_length=64)
-    username = models.CharField(max_length=64)
-    password = models.CharField(max_length=64)
+class Recipe(models.Model):
+    id = models.IntegerField(primary_key=True)
+    title = models.CharField(max_length=255)
+    slug = models.SlugField(max_length=255, unique=True, db_index=True)
+    ingredients = models.TextField()
+    description = models.TextField(blank=True)
+    views = models.IntegerField(default=0)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    is_published = models.BooleanField(default=True)
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        ordering = ['-created_at']
 
 
-class Tag(models.Model):
-    name = models.CharField(max_length=100)
+class UserProfile(models.Model):
+    id = models.IntegerField(primary_key=True)
+    first_name = models.CharField(max_length=255)
+    last_name = models.CharField(max_length=255)
+    username = models.CharField(max_length=255)
+    email = models.EmailField()
+    password = models.CharField(max_length=255)
+    likes = models.TextField(blank=True)
 
-
-class Post(models.Model):
-    title = models.CharField(max_length=200)
-    content = models.TextField()
-    image = models.ImageField()
-    tags = models.ManyToManyField(Tag, related_name='posts')
+    def __str__(self):
+        return f'{self.first_name} {self.last_name} ({self.username})'

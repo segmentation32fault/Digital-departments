@@ -9,7 +9,8 @@ urlpatterns = [
 
     path('popular/', views.popular_recipes, name='popular_recipes'),
     path('search/', views.search, name='search'),
-    re_path(r'^recipe/(?P<num>\d+)/', views.recipe, name='recipe'),
+    path('recipe/<slug:post_slug>/', views.recipe, name='recipe'),
+
     path('addrecipe/', views.add_recipe, name='add_recipe'),
 
     path('analytics/', views.analytics, name='analytics'),

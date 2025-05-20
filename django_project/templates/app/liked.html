@@ -11,10 +11,10 @@
         <section class="recipes">
             <div class="recipes_list">
                 {% for rec in liked_recipes %}
-                <div class="recipe-card" onclick="redirect('{% url 'recipe' rec.ID %}')">
-                    <img src="{% static 'images/' %}{{ rec.Фото }}" alt="Фото" class="recipe-card_image">
-                    <h3 class="recipe-card_title">{{ rec.Название }}</h3>
-                    <p class="recipe-card_description">{{ rec.Описание }}</p>
+                <div class="recipe-card" onclick="redirect('{% url 'recipe' rec.slug %}')">
+                    <img src="{% static 'images/' %}{{ rec.id }}.webp" alt="Фото" class="recipe-card_image">
+                    <h3 class="recipe-card_title">{{ rec.title }}</h3>
+                    <p class="recipe-card_description">{{ rec.description }}</p>
                 </div>
                 {% endfor %}
             </div>

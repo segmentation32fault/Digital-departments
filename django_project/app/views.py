@@ -1,15 +1,7 @@
-from django.shortcuts import render, redirect
-from django.http import HttpResponse, HttpResponseNotFound, HttpRequest, Http404
-from django.http import HttpResponseRedirect, HttpResponsePermanentRedirect
-from django.conf import settings
-import os
-from scripts.data import find_recipe, get_popular_recipes, get_liked_recipes
+from django.shortcuts import render, redirect, get_object_or_404
+from django.http import HttpResponse, HttpRequest
 
-from rest_framework import viewsets, generics
-from rest_framework.decorators import api_view
-from rest_framework.response import Response
-from .models import Post, Tag, User
-from .serializers import PostSerializer, TagSerializer, UserSerializer, RegistrationSerializer
+from app.models import Recipe, UserProfile
 
 
 menu = [{'title': 'Популярное', 'url': 'popular_recipes'},
@@ -24,7 +16,16 @@ def profile(request: HttpRequest):
     return HttpResponse('<h1>Профиль</h1>')
 
 def liked_recipes(request: HttpRequest, username):
-    context = {'liked_recipes': get_liked_recipes(username=username), 'menu': menu}
+    user = get_object_or_404(UserProfile, username=username)
+    recipes = list(map(int, user.likes.split(', ')))
+    res = list()
+
+    for recipe_id in recipes:
+        recipe_info = Recipe.objects.filter(pk=recipe_id)
+        if len(recipe_info) > 0:
+            res.append(recipe_info[0])
+
+    context = {'liked_recipes': res, 'menu': menu}
     return render(request, 'app/liked.html', context=context)
 
 
@@ -37,17 +38,22 @@ def register(request: HttpRequest):
 
 
 def popular_recipes(request: HttpRequest):
-    recipes = get_popular_recipes(9)
+    recipes = Recipe.objects.order_by('-views')[:9]
     return render(request, 'app/index.html', context={'recipes': recipes, 'menu': menu})
 
 
 def search(request: HttpRequest):
-    # return render(request, 'app/search.html')
-    return HttpResponse('<h1>Поиск рецепта</h1>')
+    return render(request, 'app/search.html')
 
 
-def recipe(request: HttpRequest, num=1):
-    context = find_recipe(int(num))
+def recipe(request: HttpRequest, post_slug='bliny'):
+    recipe_by_slug = get_object_or_404(Recipe, slug=post_slug)
+    context = {'name': recipe_by_slug.title,
+               'ingredients': recipe_by_slug.ingredients.split(';'),
+               'desc': recipe_by_slug.description,
+               'img_name': str(recipe_by_slug.id) + '.webp'
+               }
+    print(context['ingredients'])
     if context is None:
         #   если рецепт не нашелся, то перенаправление на гл страницу или страницу ошибки
         return redirect('popular_recipes')
@@ -57,7 +63,8 @@ def recipe(request: HttpRequest, num=1):
 
 
 def add_recipe(request: HttpRequest):
-    return HttpResponse('<h1>Добавление рецепта</h1>')
+    context = {'menu': menu}
+    return render(request, 'app/addrecipe.html', context=context)
 
 
 def analytics(request: HttpRequest):

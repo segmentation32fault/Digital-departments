@@ -39,5 +39,51 @@ def get_liked_recipes(username: str):
     return res
 
 
+def get_ingredient_stats(name: str):
+    ingredients_table = pd.read_csv(os.path.join(base_dir, 'data\\tablica_produktov.csv'), sep=';')
+    stats = ingredients_table.loc[ingredients_table['продукт, 100 гр'].str.contains(name)]
+
+    return stats.to_dict('records')[0]
+
+
+def get_ccpf(recipe: dict):
+    res = {
+        'calories': 0,
+        'carbohydrates': 0,
+        'protein': 0,
+        'fat': 0,
+    }
+
+    for i in recipe['ingredients']:
+        k = recipe['ingredients'][i]
+        k, amount = ' '.join(k.split()[1:]), k.split()[0]
+        if k == 'ст':
+            k = 200 / 100
+        elif k.find('ст ложк') != -1:
+            k = 10 / 100
+        elif k == 'лист':
+            k = 10 / 100
+
+        else:
+            k = 0
+
+        if '/' in amount:
+            amount = int(amount.split('/')[0]) / float(amount.split('/')[1])
+        else:
+            amount = float(amount)
+
+        total = get_ingredient_stats(i)
+
+        if k == 0 or len(total) == 0:
+            continue
+
+        res['calories'] = res['calories'] + total['калорийность'] * k * amount
+        res['carbohydrates'] = res['carbohydrates'] + total['углеводы'] * k * amount
+        res['protein'] = res['protein'] + total['белки'] * k * amount
+        res['fat'] = res['fat'] + total['жиры'] * k * amount
+
+    return res
+
+
 if __name__ == '__main__':
-    print(get_liked_recipes('ramilische'))
+    print(get_ccpf(find_recipe(1)))
