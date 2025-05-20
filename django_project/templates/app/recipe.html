@@ -8,22 +8,22 @@
     <div class="container">
         <h2 class="recipe-page_title">{{  name  }}</h2>
         <img src="{% static 'images/'%}{{ img_name }}" alt="{{ name }}" class="recipe-page_image">
-        <p class="recipe-page_description">{{  desc  }}</p>
         <h3 class="recipe-page_subtitle">Ингредиенты:</h3>
         <ul class="recipe-page_ingredients">
-            {% for ing, amount in ingredients.items %}
-            <li>{{ ing }} - {{ amount }}</li>
+            {% for ing in ingredients %}
+            <li>{{ ing }}</li>
             {% empty %}
             <li>Список ингредиентов пустой</li>
             {% endfor %}
         </ul>
-        <h3 class="recipe-page_subtitle">Инструкции:</h3>
-        <ol class="recipe-page_instructions">
-            <li>Отварите говядину до готовности.</li>
-            <li>Нарежьте овощи и обжарьте их на сковороде.</li>
-            <li>Добавьте овощи в бульон и варите 30 минут.</li>
-            <li>Подавайте горячим со сметаной.</li>
-        </ol>
+<!--        <h3 class="recipe-page_subtitle">Инструкции:</h3>-->
+<!--        <ol class="recipe-page_instructions">-->
+<!--            <li>Отварите говядину до готовности.</li>-->
+<!--            <li>Нарежьте овощи и обжарьте их на сковороде.</li>-->
+<!--            <li>Добавьте овощи в бульон и варите 30 минут.</li>-->
+<!--            <li>Подавайте горячим со сметаной.</li>-->
+<!--        </ol>-->
+        <p class="recipe-page_description">{{  desc  }}</p>
     </div>
 </main>
 {% endblock %}
