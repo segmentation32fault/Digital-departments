@@ -1,0 +1,26 @@
+<!--
+        Страница с понравившимися рецептами
+-->
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<main class="content">
+    <h2 class="recipes_title">Любимые рецепты</h2>
+    <div class="container content_wrapper">
+        <!-- Main Content -->
+        <section class="recipes">
+            <div class="recipes_list">
+                {% for rec in liked_recipes %}
+                <div class="recipe-card" onclick="redirect('{% url 'recipe' rec.slug %}')">
+                    <img src="{% static 'images/' %}{{ rec.id }}.webp" alt="Фото" class="recipe-card_image">
+                    <h3 class="recipe-card_title">{{ rec.title }}</h3>
+                    <p class="recipe-card_description">{{ rec.description }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+
+    </div>
+<script src="{% static 'js/script.js' %}"></script>
+</main>
+{% endblock %}

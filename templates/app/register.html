@@ -1,0 +1,19 @@
+<!--
+        Регистрация
+-->
+{% extends 'base.html' %}
+{% block content %}
+<main class="auth">
+    <div class="container">
+        <form class="auth_form">
+            <h2 class="auth_title">Создайте аккаунт</h2>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+            <button type="submit" class="auth_button">Зарегистрироваться</button>
+            </form>
+            <p class="auth_text">Уже есть аккаунт? <a href="{% url 'login' %}" class="auth_link">Войдите здесь</a>.</p>
+        </form>
+    </div>
+</main>
+{% endblock %}
