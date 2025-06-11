@@ -1,3 +1,24 @@
+<!--
+        Вход в аккаунт
+-->
+{% extends 'base.html' %}
+ 
+{% block content %}
+<main class="auth">
+    <div class="container">
+        <form class="auth_form">
+            <h2 class="auth_title">Войдите в аккаунт</h2>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <p><button type="submit" class="auth_button">Войти</button></p>
+            </form>
+        </form>
+    </div>
+</main>
+
+ 
+{% endblock %}
 
 <!--<main class="auth">-->
 <!--    <div class="container">-->
@@ -16,27 +37,3 @@
 <!--        </form>-->
 <!--    </div>-->
 <!--</main>-->
-
-<!--
-        Вход в аккаунт
--->
-{% extends 'base.html' %}
-{% block content %}
-<main class="auth">
-    <div class="container">
-        <form class="auth_form">
-            <h2 class="auth_title">Войдите в аккаунт</h2>
-            <form method="post">
-                {% csrf_token %}
-                <div class="auth-field auth-field">
-                    {{form.username}}
-                </div>
-                <div class="auth-field auth-field">
-                    {{form.password}}
-                </div>
-            <button type="submit" class="auth_button">Войти</button>
-            </form>
-        </form>
-    </div>
-</main>
-{% endblock %}
