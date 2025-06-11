@@ -1,31 +1,17 @@
-<!--
-        Страница поиска
--->
-
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-<main class="content">
+<main>
+    <div style="font-size: 20px;">Имя пользователя: {{username}}</div>
+    <div style="font-size: 20px;">Имя: {{first_name}}</div>
+    <div style="font-size: 20px;">Фамилия: {{last_name}}</div>
+    <div style="font-size: 25px; text-align: center;">Любимые рецепты:</div>
     <div class="container content_wrapper">
-        <form method="post">
-        {% csrf_token %}
-
-        <div style="text-align: center;">
-
-                {{form.query}}
-
-                <button type="submit" style="height: 50px; width: 100px; font-size: 15px;">Найти</button>
-                <div class="form-error">{{ form.non_field_errors }}</div>
-        </div>
-
-        </form>
-
         <!-- Main Content -->
         <section class="recipes">
             <div class="recipes_list">
-                {% for rec in recipes %}
+                {% for rec in liked_recipes %}
                 <div class="recipe-card" onclick="redirect('{{ rec.get_absolute_url }}')">
-<!--                    <img src="{% static 'images/' %}{{ rec.id }}.webp" alt="Фото" class="recipe-card_image">-->
                     <img src="{% static rec.get_image_url %}" alt="Фото" class="recipe-card_image">
                     <h3 class="recipe-card_title">{{ rec.title }}</h3>
                     <p class="recipe-card_description">{{ rec.description }}</p>

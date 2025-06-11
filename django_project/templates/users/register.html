@@ -11,9 +11,9 @@
             <form method="post">
                 {% csrf_token %}
                 {{ form.as_p }}
-            <button type="submit" class="auth_button">Зарегистрироваться</button>
+                <p><button type="submit" class="auth_button">Зарегистрироваться</button></p>
             </form>
-            <p class="auth_text">Уже есть аккаунт? <a href="{% url 'login' %}" class="auth_link">Войдите здесь</a>.</p>
+            <p class="auth_text">Уже есть аккаунт? <a href="{% url 'users:login' %}" class="auth_link">Войдите здесь</a>.</p>
         </form>
     </div>
 </main>

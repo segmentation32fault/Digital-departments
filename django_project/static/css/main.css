@@ -39,6 +39,10 @@ body {
     font-weight: bold;
 }
 
+.header_link:hover {
+    transform: scale(1.1);
+}
+
 .footer {
     background: #333;
     color: #fff;

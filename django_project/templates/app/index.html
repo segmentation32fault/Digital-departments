@@ -8,7 +8,8 @@
     <h2 class="recipes_title">Популярные рецепты</h2>
     <div class="container content_wrapper">
         <!-- Sidebar -->
-        <section class="sidebar">
+        <!-- Не работает, поменять и реализовать фильтрацию и прочее -->
+        <!--<section class="sidebar">
             <h2 class="sidebar__title">Фильтры</h2>
             <form class="sidebar__filters">
                 <label class="sidebar__filter">
@@ -39,14 +40,15 @@
                     </div>
                 </label>
             </form>
-        </section>
+        </section>-->
 
         <!-- Main Content -->
         <section class="recipes">
             <div class="recipes_list">
                 {% for rec in recipes %}
-                <div class="recipe-card" onclick="redirect('{% url 'recipe' rec.slug %}')">
-                    <img src="{% static 'images/' %}{{ rec.id }}.webp" alt="Фото" class="recipe-card_image">
+                <div class="recipe-card" onclick="redirect('{{ rec.get_absolute_url }}')">
+<!--                    <img src="{% static 'images/' %}{{ rec.id }}.webp" alt="Фото" class="recipe-card_image">-->
+                    <img src="{% static rec.get_image_url %}" alt="Фото" class="recipe-card_image">
                     <h3 class="recipe-card_title">{{ rec.title }}</h3>
                     <p class="recipe-card_description">{{ rec.description }}</p>
                 </div>
